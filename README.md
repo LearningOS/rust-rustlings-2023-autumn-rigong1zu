@@ -28,8 +28,8 @@ You will need to have Rust installed. You can get it by visiting https://rustup.
 
 Just run:
 
-```bash
-curl -L https://raw.githubusercontent.com/rust-lang/rustlings/main/install.sh | bash
+```bashcurl -L https://raw.githubusercontent.com/rust-lang/rustlings/main/install.sh | bash
+
 ```
 Or if you want it to be installed to a different path:
 

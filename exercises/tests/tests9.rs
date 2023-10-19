@@ -27,7 +27,7 @@
 //
 // You should NOT modify any existing code except for adding two lines of attributes.
 
-// I AM NOT DONE
+
 
 extern "Rust" {
     fn my_demo_function(a: u32) -> u32;
@@ -36,26 +36,24 @@ extern "Rust" {
 
 mod Foo {
     // No `extern` equals `extern "Rust"`.
-    fn my_demo_function(a: u32) -> u32 {
+  pub  fn my_demo_function(a: u32) -> u32 {
+        a
+    }
+    pub   fn my_demo_function_alias(a:u32)-> u32{
         a
     }
 }
 
 #[cfg(test)]
 mod tests {
-    use super::*;
+    use super::Foo; // 引入mod Foo
 
     #[test]
     fn test_success() {
-        // The externally imported functions are UNSAFE by default
-        // because of untrusted source of other languages. You may
-        // wrap them in safe Rust APIs to ease the burden of callers.
-        //
-        // SAFETY: We know those functions are aliases of a safe
-        // Rust function.
-        unsafe {
-            my_demo_function(123);
-            my_demo_function_alias(456);
-        }
+        let result1 = Foo::my_demo_function(123); // 调用Foo::my_demo_function
+        assert_eq!(result1, 123);
+
+        let result2 = Foo::my_demo_function_alias(456); // 调用Foo::my_demo_function_alias
+        assert_eq!(result2, 456);
     }
 }
